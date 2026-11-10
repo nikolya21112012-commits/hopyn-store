@@ -45,7 +45,7 @@ nav{height:76px;display:flex;align-items:center;justify-content:space-between}
 .lang:hover{background:rgba(255,255,255,.07)}
 .nav-cta{border:0;color:#fff;font-weight:700;background:linear-gradient(135deg,var(--pink),var(--blue));box-shadow:0 4px 15px rgba(85,124,255,.2)}
 
-/* Переключение страниц (SPA) */
+/* Переключение страниц */
 .page{display:none;animation: fadeIn .4s ease}
 .page.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -74,7 +74,7 @@ nav{height:76px;display:flex;align-items:center;justify-content:space-between}
 .secondary{border:1px solid var(--line);background:rgba(255,255,255,.03);color:#ddd}
 .secondary:hover{transform:translateY(-2px);background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15)}
 
-/* Hero visual (правый блок) */
+/* Hero visual */
 .hero-art{position:relative;height:500px;perspective:1000px}
 .store-brand-hero{
   position:relative;width:min(540px,100%);height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -197,10 +197,6 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
 .modal-btn{width:100%;padding:14px;border-radius:12px;border:none;background:linear-gradient(100deg,#ef3f9f,#607fff);color:#fff;font-size:15px;font-weight:700;transition:.2s;margin-top:8px;}
 .modal-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(91,94,255,.3);}
 .modal-error{color:#ff4d4d;font-size:13px;margin-top:10px;display:none;text-align:center;}
-.payment-unavailable{display:none;text-align:center;padding:20px 0;}
-.payment-unavailable .icon{font-size:40px;margin-bottom:12px;}
-.payment-unavailable h4{font-size:20px;margin:0 0 8px;color:#fff;}
-.payment-unavailable p{color:#9a98a7;font-size:14px;margin:0;}
 
 @media(max-width:900px){
  .hero{grid-template-columns:1fr;min-height:auto;padding:70px 0}.hero-art{height:440px;order:-1}.hero-copy{text-align:center}.hero p{margin:auto}.hero-actions{justify-content:center}.links{display:none}
@@ -234,7 +230,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
 
 <main id="top">
 
-  <!-- ============ ГЛАВНАЯ СТРАНИЦА ============ -->
+  <!-- ГЛАВНАЯ СТРАНИЦА -->
   <div id="page-home" class="page active">
     <section class="hero wrap">
       <div class="hero-copy">
@@ -293,7 +289,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
               <h3>Blair</h3>
               <p data-i="descProd">Цифровой товар. После оплаты оформление проходит через Telegram.</p>
             </div>
-            <div class="blair-price">1 400 ₽</div>
+            <div class="blair-price">1 499 ₽</div>
           </div>
 
           <div class="blair-buy-row">
@@ -331,7 +327,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
     </section>
   </div>
 
-  <!-- ============ СТРАНИЦА: ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ ============ -->
+  <!-- ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ -->
   <div id="page-privacy" class="page wrap legal-page">
     <button class="btn-back" onclick="showPage('home')">← Назад в магазин</button>
     <h1>Политика конфиденциальности</h1>
@@ -339,7 +335,6 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
     <div class="legal-content">
       <h3>1. Общие положения</h3>
       <p>Настоящая Политика конфиденциальности (далее — Политика) действует в отношении всей информации, которую проект Hopyn Reselling (далее — Магазин) может получить о Пользователе во время использования сайта.</p>
-
       <h3>2. Какие данные мы собираем</h3>
       <p>При оформлении заказа или использовании платежных систем мы можем запрашивать следующие данные:</p>
       <ul>
@@ -347,7 +342,6 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
         <li>Данные мессенджера Telegram (никнейм, ID);</li>
         <li>Технические данные (IP-адрес, файлы cookie, данные о браузере).</li>
       </ul>
-
       <h3>3. Цели сбора данных</h3>
       <p>Данные Пользователя собираются исключительно для:</p>
       <ul>
@@ -356,16 +350,14 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
         <li>Направления транзакционных чеков и уведомлений;</li>
         <li>Связи со службой поддержки.</li>
       </ul>
-
       <h3>4. Передача данных третьим лицам</h3>
       <p>Мы не продаем и не передаем персональные данные третьим лицам, за исключением случаев, предусмотренных законодательством, а также в целях проведения платежей (платежным агрегаторам, банкам).</p>
-
       <h3>5. Согласие и отзыв данных</h3>
       <p>Оформляя заказ, вы даете согласие на обработку персональных данных. Вы можете отозвать согласие, написав в службу поддержки.</p>
     </div>
   </div>
 
-  <!-- ============ СТРАНИЦА: ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ ============ -->
+  <!-- ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ -->
   <div id="page-terms" class="page wrap legal-page">
     <button class="btn-back" onclick="showPage('home')">← Назад в магазин</button>
     <h1>Пользовательское соглашение</h1>
@@ -373,19 +365,16 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
     <div class="legal-content">
       <h3>1. Предмет соглашения</h3>
       <p>Настоящее Пользовательское соглашение (далее — Соглашение) регулирует отношения между Администрацией сайта Hopyn Reselling и любым лицом, использующим данный сайт.</p>
-
       <h3>2. Оформление заказа</h3>
       <p>Приобретая цифровой товар, Пользователь обязуется указать достоверный Email для связи и получения чека. Передача цифрового товара происходит после подтверждения успешной оплаты.</p>
-
       <h3>3. Возврат средств</h3>
       <p>В связи с тем, что цифровые товары передаются Пользователю в полном объеме и не могут быть возвращены, возврат средств за приобретенный товар не осуществляется, если иное не предусмотрено условиями конкретной сделки.</p>
-
       <h3>4. Ответственность</h3>
       <p>Администрация не несет ответственности за перебои в работе сайта или платежных систем, возникшие по независящим от нее причинам.</p>
     </div>
   </div>
 
-  <!-- ============ СТРАНИЦА: ТАРИФЫ И ЦЕНЫ ============ -->
+  <!-- ТАРИФЫ И ЦЕНЫ -->
   <div id="page-tariffs" class="page wrap legal-page">
     <button class="btn-back" onclick="showPage('home')">← Назад в магазин</button>
     <h1>Тарифы и цены</h1>
@@ -394,7 +383,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
     <div class="pricing-grid">
       <div class="pricing-card">
         <h3>Blair</h3>
-        <div class="price">1 400 ₽</div>
+        <div class="price">1 499 ₽</div>
         <ul>
           <li>Доступ к цифровому товару Blair</li>
           <li>Срок доступа: Навсегда</li>
@@ -417,14 +406,13 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
     </div>
   </div>
 
-  <!-- ============ СТРАНИЦА: КОНТАКТЫ И ПОДДЕРЖКА ============ -->
+  <!-- КОНТАКТЫ И ПОДДЕРЖКА -->
   <div id="page-contacts" class="page wrap legal-page">
     <button class="btn-back" onclick="showPage('home')">← Назад в магазин</button>
     <h1>Контакты и поддержка</h1>
     <p style="color:#a1a1b0;font-size:16px;max-width:600px;margin-bottom:40px;">Если у вас возникли вопросы по заказу, проблемы с получением товара или технические неполадки, вы всегда можете обратиться к нам.</p>
     
     <div style="display:flex; flex-direction:column; gap:16px; max-width:500px;">
-      <!-- ОСТАВИЛИ ТОЛЬКО TELEGRAM -->
       <a href="https://t.me/MisterKracava" target="_blank" style="display:flex; align-items:center; padding:20px; border:1px solid var(--line); border-radius:16px; background:var(--surface); transition:.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,.2)'" onmouseout="this.style.borderColor='var(--line)'">
         <div style="font-size:30px; margin-right:20px;">✈️</div>
         <div>
@@ -465,7 +453,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
       
       <div class="modal-product">
         <span class="modal-product-name">Blair</span>
-        <span class="modal-product-price">1 400 ₽</span>
+        <span class="modal-product-price">1 499 ₽</span>
       </div>
 
       <form id="orderForm">
@@ -478,24 +466,10 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
         <div class="modal-error" id="modalError" data-i="modalErr">Пожалуйста, введите корректный Email.</div>
       </form>
     </div>
-
-    <div class="payment-unavailable" id="paymentUnavailable">
-      <div class="icon">⏳</div>
-      <h4 data-i="unavailTitle">Оплата временно недоступна</h4>
-      <p data-i="unavailText">Мы уже настраиваем платёжную систему. Пожалуйста, попробуйте позже или свяжитесь с нами в Telegram.</p>
-      <button class="modal-btn" style="margin-top:20px;" onclick="window.open('https://t.me/MisterKracava', '_blank')" data-i="unavailBtn">Написать в Telegram</button>
-    </div>
   </div>
 </div>
 
 <script>
-// ==========================================
-// 🔧 НАСТРОЙКА ОПЛАТЫ
-// false = Показывать сообщение "Оплата временно недоступна"
-// true  = Переходить к реальной оплате (когда подключите)
-// ==========================================
-const PAYMENT_ENABLED = false; 
-
 // --- ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ ---
 function showPage(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -526,8 +500,7 @@ const T = {
     ctaText: 'Выбери продукт из каталога и переходи к оформлению. Быстро, аккуратно и без лишнего интерфейсного шума.',
     ctaBtn: 'Открыть каталог ↗',
     modalTitle: 'Оформление заказа', modalSub: 'Заполните данные для создания транзакции. Чек об оплате придет на вашу почту.',
-    modalLabel: 'Электронная почта *', modalBtn: 'Перейти к оплате', modalErr: 'Пожалуйста, введите корректный Email.', modalHint: 'На этот Email придет чек и информация о заказе.',
-    unavailTitle: 'Оплата временно недоступна', unavailText: 'Мы уже настраиваем платёжную систему. Пожалуйста, попробуйте позже или свяжитесь с нами в Telegram.', unavailBtn: 'Написать в Telegram'
+    modalLabel: 'Электронная почта *', modalBtn: 'Перейти к оплате', modalErr: 'Пожалуйста, введите корректный Email.', modalHint: 'На этот Email придет чек и информация о заказе.'
   },
   en: {
     navCatalog: 'Catalog', navHow: 'How it works', navContacts: 'Contacts', navBuy: 'Buy',
@@ -547,8 +520,7 @@ const T = {
     ctaText: 'Pick a product from the catalog and continue to checkout. Fast, clean and without interface noise.',
     ctaBtn: 'Open catalog ↗',
     modalTitle: 'Checkout', modalSub: 'Fill in the details to create a transaction. The receipt will be sent to your email.',
-    modalLabel: 'Email address *', modalBtn: 'Proceed to payment', modalErr: 'Please enter a valid Email.', modalHint: 'A receipt and order info will be sent to this Email.',
-    unavailTitle: 'Payment temporarily unavailable', unavailText: 'We are currently setting up the payment system. Please try again later or contact us on Telegram.', unavailBtn: 'Message on Telegram'
+    modalLabel: 'Email address *', modalBtn: 'Proceed to payment', modalErr: 'Please enter a valid Email.', modalHint: 'A receipt and order info will be sent to this Email.'
   }
 };
 
@@ -584,20 +556,16 @@ document.querySelectorAll('.filter').forEach(btn => {
   });
 });
 
-// --- ЛОГИКА МОДАЛЬНОГО ОКНА ---
+// --- ЛОГИКА МОДАЛЬНОГО ОКНА И ОПЛАТЫ ---
 const modal = document.getElementById('checkoutModal');
 const openBtn = document.getElementById('openCheckoutBtn');
 const closeBtn = document.getElementById('closeModal');
 const orderForm = document.getElementById('orderForm');
 const emailInput = document.getElementById('emailInput');
 const errorDiv = document.getElementById('modalError');
-const formView = document.getElementById('checkoutForm');
-const unavailableView = document.getElementById('paymentUnavailable');
 
 openBtn.onclick = () => {
   modal.classList.add('active');
-  formView.style.display = 'block';
-  unavailableView.style.display = 'none';
   orderForm.reset();
   errorDiv.style.display = 'none';
 };
@@ -606,8 +574,8 @@ const closeModal = () => modal.classList.remove('active');
 closeBtn.onclick = closeModal;
 modal.onclick = (e) => { if(e.target === modal) closeModal(); };
 
-orderForm.onsubmit = (e) => {
- e.preventDefault();
+orderForm.onsubmit = async (e) => {
+  e.preventDefault();
   
   const email = emailInput.value.trim();
   if(!email || !email.includes('@') || !email.includes('.')) {
@@ -617,24 +585,21 @@ orderForm.onsubmit = (e) => {
   
   errorDiv.style.display = 'none';
 
-  // Меняем текст кнопки на время загрузки
   const submitBtn = orderForm.querySelector('button[type="submit"]');
   const originalText = submitBtn.innerText;
   submitBtn.innerText = 'Создаем платеж...';
   submitBtn.disabled = true;
 
   try {
-    // Стучимся в нашу функцию на Netlify
     const response = await fetch('/.netlify/functions/create-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, amount: 1499 }) // Цена 1499
+      body: JSON.stringify({ email: email, amount: 1001 }) // Сумма для теста (1001)
     });
 
     const data = await response.json();
 
     if (data.url) {
-      // Перенаправляем пользователя на оплату
       window.location.href = data.url;
     } else {
       alert('Ошибка при создании платежа: ' + (data.error || 'Неизвестная ошибка'));
@@ -642,7 +607,7 @@ orderForm.onsubmit = (e) => {
       submitBtn.disabled = false;
     }
   } catch (err) {
-    alert('Ошибка сети. Проверьте интернет.');
+    alert('Ошибка сети. Попробуйте позже.');
     submitBtn.innerText = originalText;
     submitBtn.disabled = false;
   }
