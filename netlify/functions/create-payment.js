@@ -6,19 +6,18 @@ exports.handler = async (event) => {
   try {
     const { email, amount } = JSON.parse(event.body);
     
-    // Берем ключи из настроек Netlify
     const MERCHANT_ID = process.env.PLATEGA_MERCHANT_ID;
     const SECRET = process.env.PLATEGA_SECRET;
     const SITE_URL = "https://hopynreselling.netlify.app/";
 
-    const response = await fetch("https://app.platega.io/v2/transaction/process", {
+    const response = await fetch("https://app.platega.io/transaction/process", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "X-MerchantId": MERCHANT_ID,
         "X-Secret": SECRET,
       },
-            body: JSON.stringify({
+      body: JSON.stringify({
         paymentMethod: 2, // 2 = СБП
         paymentDetails: { 
           amount: Number(amount), 
@@ -26,16 +25,31 @@ exports.handler = async (event) => {
         },
         description: "Оплата Blair",
         return: SITE_URL,
-        failedUrl: SITE_URL,
-        // ВАЖНО: Для API v2 нужен объект metadata
+        // Вот то самое обязательное поле!
         metadata: {
-          user_email: email 
+          user_email: email
         }
       }),
+    });
 
     const data = await response.json();
-    return { statusCode: 200, body: JSON.stringify({ url: data.redirect || data.url }) };
+    
+    // Выводим ответ в логи Netlify, чтобы если что-то пойдет не так, мы увидели причину
+    console.log("Ответ от Platega:", data);
+
+    if (!response.ok) {
+      return { 
+        statusCode: response.status, 
+        body: JSON.stringify({ error: data.message || data.error || "Ошибка Platega" }) 
+      };
+    }
+
+    return { 
+      statusCode: 200, 
+      body: JSON.stringify({ url: data.redirect || data.url }) 
+    };
   } catch (error) {
+    console.error("Ошибка сервера:", error);
     return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
   }
 };
