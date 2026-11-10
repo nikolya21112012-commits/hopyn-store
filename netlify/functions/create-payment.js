@@ -18,15 +18,20 @@ exports.handler = async (event) => {
         "X-MerchantId": MERCHANT_ID,
         "X-Secret": SECRET,
       },
-      body: JSON.stringify({
+            body: JSON.stringify({
         paymentMethod: 2, // 2 = СБП
-        paymentDetails: { amount: Number(amount), currency: "RUB" },
+        paymentDetails: { 
+          amount: Number(amount), 
+          currency: "RUB" 
+        },
         description: "Оплата Blair",
         return: SITE_URL,
         failedUrl: SITE_URL,
-        payload: email 
+        // ВАЖНО: Для API v2 нужен объект metadata
+        metadata: {
+          user_email: email 
+        }
       }),
-    });
 
     const data = await response.json();
     return { statusCode: 200, body: JSON.stringify({ url: data.redirect || data.url }) };
