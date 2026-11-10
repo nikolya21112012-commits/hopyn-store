@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hopyn Reselling — Digital Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0a0a0e;
+  --surface:#111116;
+  --text:#f0f0f5;
+  --muted:#8a8a99;
+  --pink:#ff3f9f;
+  --blue:#557cff;
+  --line:rgba(255,255,255,.08);
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--text);background:var(--bg);
+  background-image: radial-gradient(ellipse at 50% -20%, rgba(255,63,159,0.08), transparent 60%);
+  font-family:Inter,system-ui,sans-serif;
+  overflow-x:hidden;
+}
+
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+.wrap{width:min(1180px,calc(100% - 36px));margin:auto}
+
+/* Navbar */
+.top{position:sticky;top:0;z-index:50;background:rgba(10,10,14,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font:700 20px/1 "Space Grotesk";letter-spacing:-.045em}
+.logo{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font:700 15px "Space Grotesk";background:linear-gradient(135deg,var(--pink),var(--blue));box-shadow:0 4px 15px rgba(255,63,159,.2)}
+.brand span{color:#aaa8b7}
+.links{display:flex;gap:34px;color:#858493;font-size:13px}
+.links a{position:relative;transition:.3s}
+.links a:hover{color:#fff}
+.nav-actions{display:flex;gap:9px}
+.lang,.nav-cta{border:1px solid var(--line);color:#ddd;background:rgba(255,255,255,.03);padding:9px 13px;border-radius:11px;transition:.3s}
+.lang:hover{background:rgba(255,255,255,.07)}
+.nav-cta{border:0;color:#fff;font-weight:700;background:linear-gradient(135deg,var(--pink),var(--blue));box-shadow:0 4px 15px rgba(85,124,255,.2)}
+
+/* Переключение страниц (SPA) */
+.page{display:none;animation: fadeIn .4s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* Hero */
+.hero{min-height:760px;display:grid;grid-template-columns:1.03fr .97fr;align-items:center;gap:60px;padding:82px 0 85px;position:relative}
+.hero-copy{position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 11px;border:1px solid rgba(255,255,255,.08);border-radius:999px;background:rgba(255,255,255,.035);color:#aaa8b8;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 16px var(--pink);animation:pulse 2s infinite}
+@keyframes pulse{50%{transform:scale(1.45);opacity:.55}}
+
+.hero h1{
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(55px,7.1vw,94px);
+  line-height: 0.95;
+  letter-spacing: -.03em;
+  margin:25px 0 22px;
+}
+.gradient{background:linear-gradient(105deg,#fff 8%,#ff8ac8 43%,#78a1ff 92%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:590px;color:#9a98a7;font-size:17px;line-height:1.75;margin:0}
+.hero-actions{display:flex;gap:11px;margin-top:32px;flex-wrap:wrap}
+.primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;border-radius:13px;font-size:13px;font-weight:750;transition:.35s var(--ease);border:none}
+.primary{background:linear-gradient(110deg,var(--pink),#b95bff 48%,var(--blue));box-shadow:0 8px 25px rgba(255,63,159,.15)}
+.primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(85,124,255,.25)}
+.secondary{border:1px solid var(--line);background:rgba(255,255,255,.03);color:#ddd}
+.secondary:hover{transform:translateY(-2px);background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15)}
+
+/* Hero visual (правый блок) */
+.hero-art{position:relative;height:500px;perspective:1000px}
+.store-brand-hero{
+  position:relative;width:min(540px,100%);height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;border-radius:38px;background:rgba(20,20,28,.4);border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 20px 50px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.03);
+}
+.store-brand-hero::before{content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.03);border-radius:28px}
+.brand-kicker{position:relative;z-index:4;display:flex;align-items:center;gap:12px;margin-bottom:20px;color:#9896a5;font-size:9px;font-weight:700;letter-spacing:.38em}
+.brand-kicker span{width:28px;height:1px;background:linear-gradient(90deg,transparent,#ff62ae)}
+.brand-kicker span:last-child{background:linear-gradient(90deg,#6e91ff,transparent)}
+.brand-main{position:relative;z-index:4;font-size:clamp(70px,10vw,112px);line-height:.76;font-weight:950;letter-spacing:-.085em;color:#f8f7fb;text-shadow:0 10px 30px rgba(0,0,0,.5)}
+.brand-sub{position:relative;z-index:4;margin-top:14px;font-size:clamp(28px,4vw,46px);line-height:1;font-weight:800;letter-spacing:.16em;padding-left:.16em;background:linear-gradient(90deg,#ff4fa8,#a278ff,#609bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-glow{position:absolute;width:300px;height:170px;border-radius:50%;background:linear-gradient(90deg,rgba(255,63,159,.1),rgba(85,124,255,.1));filter:blur(50px);}
+.brand-orbit{position:absolute;border:1px solid rgba(255,255,255,.05);border-radius:50%;transform:rotate(-18deg);}
+.brand-orbit-1{width:410px;height:180px}
+.brand-orbit-2{width:500px;height:230px;transform:rotate(28deg)}
+.brand-star{position:absolute;z-index:5;color:#fff;text-shadow:0 0 15px rgba(255,100,180,.5);font-size:24px;}
+.star-1{top:105px;right:82px}
+.star-2{bottom:125px;left:78px;color:#79a0ff;font-size:18px;}
+.brand-bottom{position:absolute;z-index:5;left:38px;right:38px;bottom:28px;display:flex;justify-content:space-between;color:#6f6d7a;font-size:8px;letter-spacing:.24em}
+
+/* Sections */
+.section{padding:105px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:28px}
+.kicker{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#ff69b4;font-weight:800}
+.section h2{font:700 clamp(35px,4.5vw,57px)/1 "Space Grotesk";letter-spacing:-.06em;margin:10px 0 0}
+
+/* Filters */
+.filters{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+.filter{border:1px solid var(--line);background:rgba(255,255,255,.02);color:#858391;padding:9px 13px;border-radius:10px;transition:.3s}
+.filter:hover{color:#fff;border-color:rgba(255,255,255,.15)}.filter.active{color:#fff;border-color:transparent;background:linear-gradient(100deg,var(--pink),var(--blue))}
+
+/* Catalog */
+.catalog-section{position:relative;padding:110px 0 30px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:38px}
+.eyebrow,.product-kicker{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:#8e8c99}
+.section-head h2{margin:12px 0 0;font-size:clamp(38px,6vw,70px);line-height:.95;letter-spacing:-.055em}
+.section-head h2 span{background:linear-gradient(90deg,#ff4fa8,#6f8cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Карточка товара */
+.blair-product-card{display:grid;grid-template-columns:minmax(280px,1.05fr) minmax(300px,.95fr);min-height:0;overflow:hidden;border:1px solid rgba(255,255,255,.08);border-radius:30px;background:var(--surface);transition:transform .35s,box-shadow .35s}
+.blair-product-card:hover{transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.blair-image-wrap{position:relative;min-height:420px;display:flex;align-items:center;justify-content:center;padding:30px;background:#0d0d12;overflow:hidden}
+
+.blair-image{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;width:100%;height:100%;max-height:520px;border-radius:18px;border:1px solid rgba(255,255,255,.03);background:#111116;transition:transform .45s;}
+.blair-image h1{font-family: 'Playfair Display', Georgia, serif;font-size: clamp(80px, 12vw, 140px);font-weight: 700;margin: 0;color: #ff8a9f;}
+.blair-product-card:hover .blair-image{transform:scale(1.02)}
+
+.blair-badge,.blair-image-label{position:absolute;z-index:4;border:1px solid rgba(255,255,255,.1);background:rgba(12,12,19,.8);border-radius:999px;padding:10px 14px;font-size:10px;letter-spacing:.12em}
+.blair-badge{top:22px;left:22px;color:#f5f3f8}
+.blair-image-label{right:22px;bottom:22px;color:#8f8d9a}
+.blair-info{padding:48px 48px 38px;display:flex;flex-direction:column;justify-content:space-between;background:var(--surface);border-left:1px solid var(--line)}
+
+.blair-info h3{margin:13px 0 12px;font-size:clamp(44px,5vw,68px);line-height:.95;letter-spacing:-.06em;color:var(--text);}
+.blair-info p{max-width:520px;margin:0;color:#9997a5;font-size:17px;line-height:1.65}
+.blair-price{margin-top:45px;font-size:38px;font-weight:800;letter-spacing:-.045em;white-space:nowrap}
+
+.blair-buy-row{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:50px}
+.blair-stock{color:#9f9daa;font-size:13px;display:flex;align-items:center;gap:8px;}
+.blair-stock .dot {display:inline-block;width:7px;height:7px;border-radius:50%;background:#72dfaa;box-shadow:0 0 10px rgba(114,223,170,.5);}
+
+.blair-buy{display:inline-flex;align-items:center;gap:18px;text-decoration:none;color:#fff;font-weight:750;padding:16px 22px;border-radius:17px;background:linear-gradient(100deg,#ef3f9f,#607fff);box-shadow:0 10px 25px rgba(91,94,255,.15);transition:.25s;border:none;font-size:16px;}
+.blair-buy:hover{transform:translateY(-2px);box-shadow:0 15px 35px rgba(91,94,255,.25);}
+
+/* How */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.step{position:relative;min-height:205px;padding:22px;border:1px solid var(--line);border-radius:19px;background:var(--surface);transition:.4s var(--ease)}
+.step:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.15)}
+.num{font:700 11px "Space Grotesk";color:#ff70b7}.step h4{font:700 20px "Space Grotesk";margin:45px 0 7px;letter-spacing:-.03em}.step p{margin:0;color:#797784;font-size:12px;line-height:1.65}
+
+/* CTA */
+.cta{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:30px;padding:80px 45px;text-align:center;background:var(--surface)}
+.cta>*{position:relative;z-index:1}.cta h2{font:700 clamp(40px,5vw,64px)/.98 "Space Grotesk";letter-spacing:-.065em;margin:10px 0 15px}.cta p{max-width:540px;margin:auto;color:#898794;line-height:1.7;font-size:14px}
+
+/* ============ ЮРИДИЧЕСКИЕ СТРАНИЦЫ ============ */
+.legal-page{padding:80px 0 100px;min-height:70vh;}
+.legal-page h1{font:700 clamp(32px,5vw,48px) "Space Grotesk";letter-spacing:-.04em;margin:0 0 16px;}
+.legal-page .date{color:#8a8a99;font-size:14px;margin-bottom:40px;}
+.legal-content h3{font-size:20px;font-weight:700;margin:32px 0 12px;color:#fff;}
+.legal-content p, .legal-content li{color:#a1a1b0;font-size:15px;line-height:1.7;margin-bottom:12px;}
+.legal-content ul{padding-left:20px;}
+.legal-content a{color:var(--pink);text-decoration:underline;}
+.btn-back{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid var(--line);padding:10px 16px;border-radius:10px;color:#fff;font-size:14px;margin-bottom:30px;transition:.2s;}
+.btn-back:hover{background:rgba(255,255,255,.1);}
+
+/* Тарифы */
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:30px;}
+.pricing-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px;transition:.3s;}
+.pricing-card:hover{border-color:rgba(255,255,255,.2);transform:translateY(-3px);}
+.pricing-card h3{font-size:22px;margin:0 0 10px;color:#fff;}
+.pricing-card .price{font-size:36px;font-weight:800;color:var(--pink);margin-bottom:16px;font-family:"Space Grotesk";}
+.pricing-card ul{list-style:none;padding:0;margin:0;color:#a1a1b0;font-size:14px;line-height:1.8;}
+.pricing-card li::before{content:"✓";color:#72dfaa;margin-right:8px;}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:13px;display:flex;flex-direction:column;gap:20px;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{transition:.2s;cursor:pointer;}
+.footer-links a:hover{color:var(--pink);}
+.tg{color:#ff79ba;transition:.2s;}.tg:hover{color:#fff;}
+
+/* ============ МОДАЛЬНОЕ ОКНО ОФОРМЛЕНИЯ ============ */
+.modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(5,5,10,.8);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .3s;}
+.modal-overlay.active{display:flex;opacity:1;}
+.modal-box{background:var(--surface);border:1px solid var(--line);border-radius:24px;width:100%;max-width:460px;padding:32px;position:relative;transform:translateY(20px);transition:transform .3s;box-shadow:0 30px 80px rgba(0,0,0,.6);}
+.modal-overlay.active .modal-box{transform:translateY(0);}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:#8a8a99;font-size:24px;transition:.2s;line-height:1;}
+.modal-close:hover{color:#fff;transform:rotate(90deg);}
+.modal-box h3{font:700 28px "Space Grotesk";letter-spacing:-.04em;margin:0 0 8px;color:#fff;}
+.modal-box .sub{color:#9a98a7;font-size:14px;margin-bottom:24px;line-height:1.5;}
+.modal-product{display:flex;justify-content:space-between;align-items:center;padding:16px;background:rgba(255,255,255,.03);border-radius:12px;margin-bottom:24px;border:1px solid rgba(255,255,255,.05);}
+.modal-product-name{font-weight:700;font-size:16px;}
+.modal-product-price{font:700 18px "Space Grotesk";color:#ff8a9f;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:12px;color:#8a8a99;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;}
+.form-group input{width:100%;background:#0a0a0e;border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;font-family:inherit;outline:none;transition:.2s;}
+.form-group input:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,63,159,.1);}
+.form-group .hint{font-size:11px;color:#6d6b78;margin-top:6px;line-height:1.4;}
+.modal-btn{width:100%;padding:14px;border-radius:12px;border:none;background:linear-gradient(100deg,#ef3f9f,#607fff);color:#fff;font-size:15px;font-weight:700;transition:.2s;margin-top:8px;}
+.modal-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(91,94,255,.3);}
+.modal-error{color:#ff4d4d;font-size:13px;margin-top:10px;display:none;text-align:center;}
+.payment-unavailable{display:none;text-align:center;padding:20px 0;}
+.payment-unavailable .icon{font-size:40px;margin-bottom:12px;}
+.payment-unavailable h4{font-size:20px;margin:0 0 8px;color:#fff;}
+.payment-unavailable p{color:#9a98a7;font-size:14px;margin:0;}
+
+@media(max-width:900px){
+ .hero{grid-template-columns:1fr;min-height:auto;padding:70px 0}.hero-art{height:440px;order:-1}.hero-copy{text-align:center}.hero p{margin:auto}.hero-actions{justify-content:center}.links{display:none}
+ .blair-product-card{grid-template-columns:1fr}.blair-image-wrap{min-height:360px;height:360px;padding:22px}.blair-info{padding:30px 26px 28px;border-left:0;border-top:1px solid var(--line)}.blair-price{margin-top:30px}
+ .section-head{display:block}.steps,.pricing-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+ .wrap{width:min(100% - 22px,1180px)}nav{height:66px}.nav-cta{display:none}.brand{font-size:18px}.hero{padding:50px 0 65px}.hero h1{font-size:52px}.hero-art{height:365px}.store-brand-hero{height:390px;border-radius:28px}
+ .brand-main{font-size:68px}.brand-sub{font-size:27px}.brand-orbit-1{width:310px;height:140px}.brand-orbit-2{width:380px;height:175px}.star-1{top:78px;right:45px}.star-2{bottom:95px;left:45px}
+ .section{padding:75px 0}.steps,.pricing-grid{grid-template-columns:1fr}.cta{padding:60px 20px}.blair-buy-row{margin-top:35px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="top">
+<nav class="wrap">
+  <a class="brand" href="#" onclick="showPage('home')"><span class="logo">H</span><span>hopyn <b>reselling</b></span></a>
+  <div class="links">
+    <a href="#catalog" onclick="showPage('home')" data-i="navCatalog">Каталог</a>
+    <a href="#how" onclick="showPage('home')" data-i="navHow">Как получить</a>
+    <a href="#" onclick="showPage('contacts')" data-i="navContacts">Контакты</a>
+  </div>
+  <div class="nav-actions">
+    <button class="lang" id="langBtn">EN</button>
+    <a href="#catalog" onclick="showPage('home')" class="nav-cta" data-i="navBuy">Купить</a>
+  </div>
+</nav>
+</header>
+
+<main id="top">
+
+  <!-- ============ ГЛАВНАЯ СТРАНИЦА ============ -->
+  <div id="page-home" class="page active">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <div class="eyebrow"><i></i><span data-i="eyebrow">DIGITAL GOODS · CURATED</span></div>
+        <h1 data-i="heroTitle">Не ищи<br><span class="gradient">лишнее.</span><br>Бери нужное.</h1>
+        <p data-i="heroText">Hopyn Reselling — аккуратно собранный каталог цифровых продуктов. Выбери товар, оформи заказ и получи его без лишней суеты.</p>
+        <div class="hero-actions">
+          <a class="primary" href="#catalog" data-i="heroBtn">Смотреть каталог ↗</a>
+          <a class="secondary" href="#how" data-i="heroSecond">Как это работает</a>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="store-brand-hero">
+          <div class="brand-kicker"><span></span> DIGITAL STORE <span></span></div>
+          <div class="brand-main">HOPYN</div>
+          <div class="brand-sub">RESELLING</div>
+          <div class="brand-glow"></div>
+          <div class="brand-orbit brand-orbit-1"></div>
+          <div class="brand-orbit brand-orbit-2"></div>
+          <div class="brand-star star-1">✦</div>
+          <div class="brand-star star-2">✧</div>
+          <div class="brand-bottom">
+            <span>CURATED GOODS</span>
+            <span>EST. 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalog" class="catalog-section wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow" data-i="catalogKicker">CATALOG · DIGITAL GOODS</div>
+          <h2 data-i="catalogTitle">Выбери свой <span>товар.</span></h2>
+        </div>
+        <div class="filters">
+          <button class="filter active" data-filter="all" data-i="filterAll">Все</button>
+          <button class="filter" data-filter="available" data-i="filterAvail">В наличии</button>
+        </div>
+      </div>
+
+      <div class="blair-product-card" id="productCard">
+        <div class="blair-image-wrap">
+          <div class="blair-image">
+            <h1>Blair</h1>
+          </div>
+          <div class="blair-badge" data-i="badgeAvail">● В НАЛИЧИИ</div>
+          <div class="blair-image-label">HOPYN · 01</div>
+        </div>
+
+        <div class="blair-info">
+          <div class="blair-info-top">
+            <div>
+              <div class="product-kicker" data-i="kickerProd">DIGITAL PRODUCT</div>
+              <h3>Blair</h3>
+              <p data-i="descProd">Цифровой товар. После оплаты оформление проходит через Telegram.</p>
+            </div>
+            <div class="blair-price">1 400 ₽</div>
+          </div>
+
+          <div class="blair-buy-row">
+            <div class="blair-stock">
+              <span class="dot"></span>
+              <span data-i="stockIn">В наличии</span>
+            </div>
+            <button class="blair-buy" id="openCheckoutBtn" type="button">
+              <span data-i="btnBuy">Купить</span> <span>↗</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="how">
+      <div class="section-head">
+        <div><div class="kicker" data-i="howKicker">Simple checkout</div><h2 data-i="howTitle">Четыре шага.</h2></div>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="num">01</span><h4 data-i="s1h">Выбери</h4><p data-i="s1p">Открой нужный продукт в каталоге.</p></div>
+        <div class="step"><span class="num">02</span><h4 data-i="s2h">Оплати</h4><p data-i="s2p">Выбери удобный способ оплаты.</p></div>
+        <div class="step"><span class="num">03</span><h4 data-i="s3h">Напиши</h4><p data-i="s3p">Свяжись с нами в Telegram и отправь подтверждение.</p></div>
+        <div class="step"><span class="num">04</span><h4 data-i="s4h">Получи</h4><p data-i="s4p">После проверки получишь выбранный цифровой товар.</p></div>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="cta">
+        <div class="kicker" data-i="ctaKicker">Ready when you are</div>
+        <h2 data-i="ctaTitle">Твой следующий<br><span class="gradient">digital drop.</span></h2>
+        <p data-i="ctaText">Выбери продукт из каталога и переходи к оформлению. Быстро, аккуратно и без лишнего интерфейсного шума.</p>
+        <div style="margin-top:27px"><a class="primary" href="#catalog" data-i="ctaBtn">Открыть каталог ↗</a></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ СТРАНИЦА: ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ ============ -->
+  <div id="page-privacy" class="page wrap legal-page">
+    <button class="btn-back" onclick="showPage('home')">← Назад в магазин</button>
+    <h1>Политика конфиденциальности</h1>
+    <div class="date">Дата последнего обновления: 08.11.2026</div>
+    <div class="legal-content">
+      <h3>1. Общие положения</h3>
+      <p>Настоящая Политика конфиденциальности (далее — Политика) действует в отношении всей информации, которую проект Hopyn Reselling (далее — Магазин) может получить о Пользователе во время использования сайта.</p>
+
+      <h3>2. Какие данные мы собираем</h3>
+      <p>При оформлении заказа или использовании платежных систем мы можем запрашивать следующие данные:</p>
+      <ul>
+        <li>Адрес электронной почты (Email);</li>
+        <li>Данные мессенджера Telegram (никнейм, ID);</li>
+        <li>Технические данные (IP-адрес, файлы cookie, данные о браузере).</li>
+      </ul>
+
+      <h3>3. Цели сбора данных</h3>
+      <p>Данные Пользователя собираются исключительно для:</p>
+      <ul>
+        <li>Идентификации Пользователя при выполнении обязательств по сделке;</li>
+        <li>Предоставления доступа к цифровым товарам;</li>
+        <li>Направления транзакционных чеков и уведомлений;</li>
+        <li>Связи со службой поддержки.</li>
+      </ul>
+
+      <h3>4. Передача данных третьим лицам</h3>
+      <p>Мы не продаем и не передаем персональные данные третьим лицам, за исключением случаев, предусмотренных законодательством, а также в целях проведения платежей (платежным агрегаторам, банкам).</p>
+
+      <h3>5. Согласие и отзыв данных</h3>
+      <p>Оформляя заказ, вы даете согласие на обработку персональных данных. Вы можете отозвать согласие, написав в службу поддержки.</p>
+    </div>
+  </div>
+
+  <!-- ============ СТРАНИЦА: ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ ============ -->
+  <div id="page-terms" class="page wrap legal-page">
+    <button class="btn-back" onclick="showPage('home')">← Назад в магазин</button>
+    <h1>Пользовательское соглашение</h1>
+    <div class="date">Дата последнего обновления: 08.11.2026</div>
+    <div class="legal-content">
+      <h3>1. Предмет соглашения</h3>
+      <p>Настоящее Пользовательское соглашение (далее — Соглашение) регулирует отношения между Администрацией сайта Hopyn Reselling и любым лицом, использующим данный сайт.</p>
+
+      <h3>2. Оформление заказа</h3>
+      <p>Приобретая цифровой товар, Пользователь обязуется указать достоверный Email для связи и получения чека. Передача цифрового товара происходит после подтверждения успешной оплаты.</p>
+
+      <h3>3. Возврат средств</h3>
+      <p>В связи с тем, что цифровые товары передаются Пользователю в полном объеме и не могут быть возвращены, возврат средств за приобретенный товар не осуществляется, если иное не предусмотрено условиями конкретной сделки.</p>
+
+      <h3>4. Ответственность</h3>
+      <p>Администрация не несет ответственности за перебои в работе сайта или платежных систем, возникшие по независящим от нее причинам.</p>
+    </div>
+  </div>
+
+  <!-- ============ СТРАНИЦА: ТАРИФЫ И ЦЕНЫ ============ -->
+  <div id="page-tariffs" class="page wrap legal-page">
+    <button class="btn-back" onclick="showPage('home')">← Назад в магазин</button>
+    <h1>Тарифы и цены</h1>
+    <p style="color:#a1a1b0;margin-bottom:30px;font-size:16px;">Ниже представлены актуальные позиции товаров и их стоимость. Все цены указаны в рублях РФ.</p>
+    
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Blair</h3>
+        <div class="price">1 400 ₽</div>
+        <ul>
+          <li>Доступ к цифровому товару Blair</li>
+          <li>Срок доступа: Навсегда</li>
+          <li>Передача через Telegram</li>
+        </ul>
+      </div>
+      <div class="pricing-card" style="opacity:0.5;">
+        <h3>В планах</h3>
+        <div class="price">— ₽</div>
+        <ul>
+          <li>Новые позиции каталога</li>
+          <li>Специальные предложения</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div style="margin-top:40px; padding:20px; border:1px solid var(--line); border-radius:16px; background:rgba(255,255,255,.02);">
+      <h3 style="margin-top:0;">Способы оплаты</h3>
+      <p>Оплата производится через <strong>СБП</strong> (Система быстрых платежей) по QR-коду. После подтверждения оплаты вы получаете чек на указанный Email и ваш заказ передается вам.</p>
+    </div>
+  </div>
+
+  <!-- ============ СТРАНИЦА: КОНТАКТЫ И ПОДДЕРЖКА ============ -->
+  <div id="page-contacts" class="page wrap legal-page">
+    <button class="btn-back" onclick="showPage('home')">← Назад в магазин</button>
+    <h1>Контакты и поддержка</h1>
+    <p style="color:#a1a1b0;font-size:16px;max-width:600px;margin-bottom:40px;">Если у вас возникли вопросы по заказу, проблемы с получением товара или технические неполадки, вы всегда можете обратиться к нам.</p>
+    
+    <div style="display:flex; flex-direction:column; gap:16px; max-width:500px;">
+      <!-- ОСТАВИЛИ ТОЛЬКО TELEGRAM -->
+      <a href="https://t.me/MisterKracava" target="_blank" style="display:flex; align-items:center; padding:20px; border:1px solid var(--line); border-radius:16px; background:var(--surface); transition:.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,.2)'" onmouseout="this.style.borderColor='var(--line)'">
+        <div style="font-size:30px; margin-right:20px;">✈️</div>
+        <div>
+          <div style="font-weight:700; font-size:18px; color:#fff;">Telegram Поддержка</div>
+          <div style="color:#8a8a99; font-size:14px;">@MisterKracava</div>
+        </div>
+      </a>
+    </div>
+    
+    <div style="margin-top:40px; font-size:14px; color:#8a8a99;">
+      Время ответа поддержки: обычно до 1 часа.
+    </div>
+  </div>
+
+</main>
+
+<footer class="wrap" id="contacts">
+  <div class="footer-bottom">
+    <span class="footer-brand">© 2026 Hopyn Reselling. Все права защищены.</span>
+    <span>Telegram: <a class="tg" href="https://t.me/MisterKracava" target="_blank">@MisterKracava</a></span>
+  </div>
+  <div class="footer-links" style="margin-top:10px;">
+    <a onclick="showPage('privacy')">Политика конфиденциальности</a>
+    <a onclick="showPage('terms')">Пользовательское соглашение</a>
+    <a onclick="showPage('tariffs')">Цены и тарифы</a>
+    <a onclick="showPage('contacts')">Поддержка</a>
+  </div>
+</footer>
+
+<!-- МОДАЛЬНОЕ ОКНО ОФОРМЛЕНИЯ -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal-box">
+    <button class="modal-close" id="closeModal">&times;</button>
+    
+    <div id="checkoutForm">
+      <h3 data-i="modalTitle">Оформление заказа</h3>
+      <p class="sub" data-i="modalSub">Заполните данные для создания транзакции. Чек об оплате придет на вашу почту.</p>
+      
+      <div class="modal-product">
+        <span class="modal-product-name">Blair</span>
+        <span class="modal-product-price">1 400 ₽</span>
+      </div>
+
+      <form id="orderForm">
+        <div class="form-group">
+          <label for="emailInput" data-i="modalLabel">Электронная почта *</label>
+          <input type="email" id="emailInput" placeholder="example@mail.com" required>
+          <div class="hint" data-i="modalHint">На этот Email придет чек и информация о заказе.</div>
+        </div>
+        <button type="submit" class="modal-btn" data-i="modalBtn">Перейти к оплате</button>
+        <div class="modal-error" id="modalError" data-i="modalErr">Пожалуйста, введите корректный Email.</div>
+      </form>
+    </div>
+
+    <div class="payment-unavailable" id="paymentUnavailable">
+      <div class="icon">⏳</div>
+      <h4 data-i="unavailTitle">Оплата временно недоступна</h4>
+      <p data-i="unavailText">Мы уже настраиваем платёжную систему. Пожалуйста, попробуйте позже или свяжитесь с нами в Telegram.</p>
+      <button class="modal-btn" style="margin-top:20px;" onclick="window.open('https://t.me/MisterKracava', '_blank')" data-i="unavailBtn">Написать в Telegram</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==========================================
+// 🔧 НАСТРОЙКА ОПЛАТЫ
+// false = Показывать сообщение "Оплата временно недоступна"
+// true  = Переходить к реальной оплате (когда подключите)
+// ==========================================
+const PAYMENT_ENABLED = false; 
+
+// --- ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ ---
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + pageId);
+  if(target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+// --- СЛОВАРИ ПЕРЕВОДА ---
+const T = {
+  ru: {
+    navCatalog: 'Каталог', navHow: 'Как получить', navContacts: 'Контакты', navBuy: 'Купить',
+    eyebrow: 'DIGITAL GOODS · CURATED',
+    heroTitle: 'Не ищи<br><span class="gradient">лишнее.</span><br>Бери нужное.',
+    heroText: 'Hopyn Reselling — аккуратно собранный каталог цифровых продуктов. Выбери товар, оформи заказ и получи его без лишней суеты.',
+    heroBtn: 'Смотреть каталог ↗', heroSecond: 'Как это работает',
+    catalogKicker: 'CATALOG · DIGITAL GOODS', catalogTitle: 'Выбери свой <span>товар.</span>',
+    filterAll: 'Все', filterAvail: 'В наличии',
+    badgeAvail: '● В НАЛИЧИИ', kickerProd: 'DIGITAL PRODUCT',
+    descProd: 'Цифровой товар. После оплаты оформление проходит через Telegram.',
+    stockIn: 'В наличии', btnBuy: 'Купить',
+    howKicker: 'Simple checkout', howTitle: 'Четыре шага.',
+    s1h: 'Выбери', s1p: 'Открой нужный продукт в каталоге.', s2h: 'Оплати', s2p: 'Выбери удобный способ оплаты.',
+    s3h: 'Напиши', s3p: 'Свяжись с нами в Telegram и отправь подтверждение.', s4h: 'Получи', s4p: 'После проверки получишь выбранный цифровой товар.',
+    ctaKicker: 'Ready when you are', ctaTitle: 'Твой следующий<br><span class="gradient">digital drop.</span>',
+    ctaText: 'Выбери продукт из каталога и переходи к оформлению. Быстро, аккуратно и без лишнего интерфейсного шума.',
+    ctaBtn: 'Открыть каталог ↗',
+    modalTitle: 'Оформление заказа', modalSub: 'Заполните данные для создания транзакции. Чек об оплате придет на вашу почту.',
+    modalLabel: 'Электронная почта *', modalBtn: 'Перейти к оплате', modalErr: 'Пожалуйста, введите корректный Email.', modalHint: 'На этот Email придет чек и информация о заказе.',
+    unavailTitle: 'Оплата временно недоступна', unavailText: 'Мы уже настраиваем платёжную систему. Пожалуйста, попробуйте позже или свяжитесь с нами в Telegram.', unavailBtn: 'Написать в Telegram'
+  },
+  en: {
+    navCatalog: 'Catalog', navHow: 'How it works', navContacts: 'Contacts', navBuy: 'Buy',
+    eyebrow: 'DIGITAL GOODS · CURATED',
+    heroTitle: 'Skip the<br><span class="gradient">noise.</span><br>Get what matters.',
+    heroText: 'Hopyn Reselling is a carefully curated catalog of digital products. Choose a product, place your order and keep it simple.',
+    heroBtn: 'View catalog ↗', heroSecond: 'How it works',
+    catalogKicker: 'CATALOG · DIGITAL GOODS', catalogTitle: 'Choose your <span>product.</span>',
+    filterAll: 'All', filterAvail: 'Available',
+    badgeAvail: '● AVAILABLE', kickerProd: 'DIGITAL PRODUCT',
+    descProd: 'Digital product. After payment, delivery is handled through Telegram.',
+    stockIn: 'Available', btnBuy: 'Buy',
+    howKicker: 'Simple checkout', howTitle: 'Four steps.',
+    s1h: 'Choose', s1p: 'Open the product you want.', s2h: 'Pay', s2p: 'Choose a convenient payment method.',
+    s3h: 'Message', s3p: 'Contact us on Telegram and send your confirmation.', s4h: 'Receive', s4p: 'After verification, receive your digital product.',
+    ctaKicker: 'Ready when you are', ctaTitle: 'Your next<br><span class="gradient">digital drop.</span>',
+    ctaText: 'Pick a product from the catalog and continue to checkout. Fast, clean and without interface noise.',
+    ctaBtn: 'Open catalog ↗',
+    modalTitle: 'Checkout', modalSub: 'Fill in the details to create a transaction. The receipt will be sent to your email.',
+    modalLabel: 'Email address *', modalBtn: 'Proceed to payment', modalErr: 'Please enter a valid Email.', modalHint: 'A receipt and order info will be sent to this Email.',
+    unavailTitle: 'Payment temporarily unavailable', unavailText: 'We are currently setting up the payment system. Please try again later or contact us on Telegram.', unavailBtn: 'Message on Telegram'
+  }
+};
+
+let currentLang = 'ru';
+
+function applyLang() {
+  document.documentElement.lang = currentLang;
+  const dict = T[currentLang];
+  
+  document.querySelectorAll('[data-i]').forEach(el => {
+    const key = el.getAttribute('data-i');
+    if(dict[key] !== undefined) {
+      el.innerHTML = dict[key];
+    }
+  });
+  
+  document.getElementById('langBtn').textContent = currentLang === 'ru' ? 'EN' : 'RU';
+}
+
+document.getElementById('langBtn').onclick = () => {
+  currentLang = currentLang === 'ru' ? 'en' : 'ru';
+  applyLang();
+};
+
+// --- ЛОГИКА ФИЛЬТРОВ ---
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const card = document.getElementById('productCard');
+    if(!card) return;
+    card.style.display = (btn.dataset.filter === 'soon') ? 'none' : 'grid';
+  });
+});
+
+// --- ЛОГИКА МОДАЛЬНОГО ОКНА ---
+const modal = document.getElementById('checkoutModal');
+const openBtn = document.getElementById('openCheckoutBtn');
+const closeBtn = document.getElementById('closeModal');
+const orderForm = document.getElementById('orderForm');
+const emailInput = document.getElementById('emailInput');
+const errorDiv = document.getElementById('modalError');
+const formView = document.getElementById('checkoutForm');
+const unavailableView = document.getElementById('paymentUnavailable');
+
+openBtn.onclick = () => {
+  modal.classList.add('active');
+  formView.style.display = 'block';
+  unavailableView.style.display = 'none';
+  orderForm.reset();
+  errorDiv.style.display = 'none';
+};
+
+const closeModal = () => modal.classList.remove('active');
+closeBtn.onclick = closeModal;
+modal.onclick = (e) => { if(e.target === modal) closeModal(); };
+
+orderForm.onsubmit = (e) => {
+ e.preventDefault();
+  
+  const email = emailInput.value.trim();
+  if(!email || !email.includes('@') || !email.includes('.')) {
+    errorDiv.style.display = 'block';
+    return;
+  }
+  
+  errorDiv.style.display = 'none';
+
+  // Меняем текст кнопки на время загрузки
+  const submitBtn = orderForm.querySelector('button[type="submit"]');
+  const originalText = submitBtn.innerText;
+  submitBtn.innerText = 'Создаем платеж...';
+  submitBtn.disabled = true;
+
+  try {
+    // Стучимся в нашу функцию на Netlify
+    const response = await fetch('/.netlify/functions/create-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, amount: 1499 }) // Цена 1499
+    });
+
+    const data = await response.json();
+
+    if (data.url) {
+      // Перенаправляем пользователя на оплату
+      window.location.href = data.url;
+    } else {
+      alert('Ошибка при создании платежа: ' + (data.error || 'Неизвестная ошибка'));
+      submitBtn.innerText = originalText;
+      submitBtn.disabled = false;
+    }
+  } catch (err) {
+    alert('Ошибка сети. Проверьте интернет.');
+    submitBtn.innerText = originalText;
+    submitBtn.disabled = false;
+  }
+};
+
+// Инициализация
+applyLang();
+</script>
+
+</body>
+</html>
