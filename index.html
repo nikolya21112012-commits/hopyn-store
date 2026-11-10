@@ -289,7 +289,8 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
               <h3>Blair</h3>
               <p data-i="descProd">Цифровой товар. После оплаты оформление проходит через Telegram.</p>
             </div>
-            <div class="blair-price">1 499 ₽</div>
+            <!-- ИЗМЕНЕНО НА 1400 -->
+            <div class="blair-price">1 400 ₽</div>
           </div>
 
           <div class="blair-buy-row">
@@ -383,7 +384,8 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
     <div class="pricing-grid">
       <div class="pricing-card">
         <h3>Blair</h3>
-        <div class="price">1 499 ₽</div>
+        <!-- ИЗМЕНЕНО НА 1400 -->
+        <div class="price">1 400 ₽</div>
         <ul>
           <li>Доступ к цифровому товару Blair</li>
           <li>Срок доступа: Навсегда</li>
@@ -453,7 +455,8 @@ footer{border-top:1px solid var(--line);padding:40px 0;color:#656370;font-size:1
       
       <div class="modal-product">
         <span class="modal-product-name">Blair</span>
-        <span class="modal-product-price">1 499 ₽</span>
+        <!-- ИЗМЕНЕНО НА 1400 -->
+        <span class="modal-product-price">1 400 ₽</span>
       </div>
 
       <form id="orderForm">
@@ -594,8 +597,8 @@ orderForm.onsubmit = async (e) => {
     const response = await fetch('/.netlify/functions/create-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      // ВОТ ЗДЕСЬ МЫ СТАВИМ ПРАВИЛЬНУЮ СУММУ 1499
-      body: JSON.stringify({ email: email, amount: 1499 }) 
+      // ИЗМЕНЕНО НА 1400
+      body: JSON.stringify({ email: email, amount: 1400 }) 
     });
 
     const data = await response.json();
