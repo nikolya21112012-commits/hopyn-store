@@ -556,7 +556,7 @@ document.querySelectorAll('.filter').forEach(btn => {
   });
 });
 
-// --- ЛОГИКА МОДАЛЬНОГО ОКНА И ОПЛАТЫ ---
+// --- ЛОГИКА МОДАЛЬНОГО ОКНА ---
 const modal = document.getElementById('checkoutModal');
 const openBtn = document.getElementById('openCheckoutBtn');
 const closeBtn = document.getElementById('closeModal');
@@ -594,7 +594,8 @@ orderForm.onsubmit = async (e) => {
     const response = await fetch('/.netlify/functions/create-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, amount: 1001 }) // Сумма для теста (1001)
+      // ВОТ ЗДЕСЬ МЫ СТАВИМ ПРАВИЛЬНУЮ СУММУ 1499
+      body: JSON.stringify({ email: email, amount: 1499 }) 
     });
 
     const data = await response.json();
